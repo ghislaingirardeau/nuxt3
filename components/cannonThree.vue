@@ -1,5 +1,5 @@
 <template>
-  <div ref="scenePhysic"></div>
+  <canvas ref="scenePhysic"></canvas>
 </template>
 
 <script>
@@ -28,22 +28,21 @@ export default {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       45,
-      window.innerWidth / window.innerHeight,
+      (window.innerWidth - 300) / window.innerHeight,
       0.1,
       1000
     );
 
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    canvas.appendChild(renderer.domElement);
+    const renderer = new THREE.WebGLRenderer({ canvas });
+    renderer.setSize(window.innerWidth - 300, window.innerHeight);
 
     const interactionManager = new $InteractionManager(
       renderer,
       camera,
-      renderer.domElement
+      canvas
     );
 
-    const controls = new OrbitControls(camera, renderer.domElement);
+    const controls = new OrbitControls(camera, canvas);
     camera.position.set(0, 5, -40);
     controls.update();
 
@@ -199,9 +198,9 @@ export default {
     animate();
 
     window.addEventListener("resize", () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.aspect = (window.innerWidth - 300) / window.innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(window.innerWidth - 300, window.innerHeight);
     });
   },
 };
@@ -211,13 +210,8 @@ export default {
 .dg.a {
   margin-top: 100px;
 }
-#info {
-  position: absolute;
-  top: 200px;
-  width: 100%;
-  text-align: center;
-  z-index: 100;
-  display: block;
-  color: wheat;
+canvas {
+  width: 1000px;
+  height: 800px;
 }
 </style>
