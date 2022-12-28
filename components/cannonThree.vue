@@ -1,5 +1,5 @@
 <template>
-  <canvas id="scenePhysic"></canvas>
+  <div ref="scenePhysic"></div>
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
     return {};
   },
   mounted() {
-    const canvas = document.getElementById("scenePhysic");
+    const canvas = this.$refs.scenePhysic;
     const { $CANNON, $gsap, $InteractionManager } = useNuxtApp();
 
     //CANNON
@@ -33,16 +33,17 @@ export default {
       1000
     );
 
-    const renderer = new THREE.WebGLRenderer({ canvas });
+    const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    canvas.appendChild(renderer.domElement);
 
     const interactionManager = new $InteractionManager(
       renderer,
       camera,
-      canvas
+      renderer.domElement
     );
 
-    const controls = new OrbitControls(camera, canvas);
+    const controls = new OrbitControls(camera, renderer.domElement);
     camera.position.set(0, 5, -40);
     controls.update();
 
