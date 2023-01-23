@@ -1,6 +1,10 @@
 <template>
   <div>
     <h1>Home page</h1>
+
+    <Icon name="mdi:account-circle" size="34px" color="red" /><Icon name="🚀" />
+    <Icon name="healthicons:plantation-worker-alt" size="34px" color="blue" />
+
     <HeaderMenu />
     <NuxtLink to="about">About </NuxtLink>
     <DynamicHeading level="1">titre</DynamicHeading>
