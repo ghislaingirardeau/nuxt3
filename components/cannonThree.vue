@@ -210,8 +210,4 @@ export default {
 .dg.a {
   margin-top: 100px;
 }
-canvas {
-  width: 1000px;
-  height: 800px;
-}
 </style>

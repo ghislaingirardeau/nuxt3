@@ -73,21 +73,22 @@ export default {
     // SET UP A CUBE FOR EXEMPLE
     const mutliTexture = [
       new THREE.MeshBasicMaterial({
+        color: 0x00ff00,
+      }),
+      new THREE.MeshBasicMaterial({
+        color: 0x00ff00,
+      }),
+      new THREE.MeshBasicMaterial({
+        color: 0x00ff00,
+      }),
+
+      new THREE.MeshBasicMaterial({
+        color: 0x00ff00,
+      }),
+      new THREE.MeshStandardMaterial({
         map: textureLoader.load(user),
       }),
-      new THREE.MeshBasicMaterial({
-        map: textureLoader.load(menu),
-      }),
-      new THREE.MeshBasicMaterial({
-        map: textureLoader.load(share),
-      }),
-      new THREE.MeshBasicMaterial({
-        map: textureLoader.load(sign),
-      }),
-      new THREE.MeshBasicMaterial({
-        map: textureLoader.load(share),
-      }),
-      new THREE.MeshBasicMaterial({
+      new THREE.MeshStandardMaterial({
         map: textureLoader.load(user),
       }),
     ];
@@ -102,7 +103,10 @@ export default {
     // EVENT TO THE CUBE
     interactionManager.add(cube);
     cube.addEventListener("click", (event) => {
-      console.log("cube click", event);
+      cube.addEventListener("mousemove", (e) => {
+        console.log(e.originalEvent.offsetX / 10);
+        cube.rotation.x = Math.PI / (e.originalEvent.offsetX / 100);
+      });
     });
     mainGroup.add(cube);
     // folder for gui menu
@@ -110,6 +114,16 @@ export default {
     cubeFolder.add(cube.rotation, "x", 0, Math.PI * 2).name("RotateX");
     cubeFolder.add(cube.rotation, "y", 0, Math.PI * 2).name("RotateY");
     cubeFolder.add(cube.rotation, "z", 0, Math.PI * 2).name("RotateZ");
+
+    const panelGeometry = new THREE.BoxGeometry(4, 3, 0.2);
+    const panelMaterial = new THREE.MeshStandardMaterial({
+      color: 0x00ff00,
+    });
+    const panelMesh = new THREE.Mesh(panelGeometry, mutliTexture);
+    panelMesh.position.z = 2;
+    panelMesh.position.x = -2;
+    panelMesh.rotation.y = Math.PI / 5;
+    mainGroup.add(panelMesh);
 
     const material = new THREE.LineBasicMaterial({
       color: 0x0000ff,
