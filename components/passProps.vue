@@ -1,10 +1,11 @@
 <template>
   <div>
+    <h1>{{ title }}</h1>
     <h2>props test {{ count }} and the result {{ movie }}</h2>
     <p>{{ test }}</p>
     <p>{{ route.path }}</p>
     <input type="text" v-model="movie" />
-    <button @click="increase">increase</button>
+    <v-btn @click="increase">increase</v-btn>
   </div>
 </template>
 

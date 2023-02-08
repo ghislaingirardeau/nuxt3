@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h2>menu components</h2>
+    <h2>Fetch datas</h2>
     <h3>voici les changements {{ message }}</h3>
+    <p>Using state from parents(index): {{ stateData }}</p>
     <div class="preview">
       <div v-for="item in movieFromFetch" :key="item.imdbID">
         <NuxtLink :to="{ name: 'post-id', params: { id: item.imdbID } }"
@@ -21,6 +22,7 @@ export default {
     message.value = "mon messages";
     const movie = ref([]);
     const movieFromFetch = ref([]);
+    const stateData = useState("stateData");
 
     /* const { data } = useAsyncData(() => {
       return $fetch(`http://www.omdbapi.com/?apikey=8e3f600b&s=batman`);
@@ -31,6 +33,7 @@ export default {
       message,
       movie,
       movieFromFetch,
+      stateData,
     };
   },
   mounted() {},

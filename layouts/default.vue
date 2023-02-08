@@ -5,12 +5,18 @@
         <!-- <v-app-bar-nav-icon
           variant="text"
           @click.stop="drawer = !drawer"
-        ></v-app-bar-nav-icon> -->
+        ></v-app-bar-nav-icon>
         <Icon
           name="mdi:menu"
           size="34px"
           color="white"
           class="ml-4"
+          @click.stop="drawer = !drawer"
+        /> -->
+        <Icon
+          name="mdi:menu"
+          size="34px"
+          color="white"
           @click.stop="drawer = !drawer"
         />
 

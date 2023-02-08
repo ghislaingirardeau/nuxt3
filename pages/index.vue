@@ -3,13 +3,18 @@
     <h1>Home page</h1>
 
     <Icon name="mdi:account-circle" size="34px" color="red" /><Icon name="🚀" />
-    <Icon name="healthicons:plantation-worker-alt" size="34px" color="blue" />
+    <Icon name="mdi:account-box" size="34px" color="blue" />
 
-    <HeaderMenu />
-    <NuxtLink to="about">About </NuxtLink>
-    <DynamicHeading level="1">titre</DynamicHeading>
-    <DynamicHeading level="2">titre</DynamicHeading>
-    <div>
+    <div class="container">
+      <p>Define state: {{ stateData }}</p>
+      <HeaderMenu />
+    </div>
+    <div class="container">
+      <DynamicHeading level="1">Render component function</DynamicHeading>
+      <DynamicHeading level="3">title smaller</DynamicHeading>
+    </div>
+
+    <div class="container">
       <h1>Pinia store</h1>
       <p>
         my store <br />
@@ -21,6 +26,11 @@
       <v-btn @click="countStore.increment">use action</v-btn>
       <v-btn @click="name">update name</v-btn>
     </div>
+    <div class="container">
+      <h2>Use reactive instead of ref for array or object</h2>
+      <v-btn @click="reactiveObject.id++">Change ID</v-btn>
+      {{ reactiveObject }}
+    </div>
   </div>
 </template>
 
@@ -29,11 +39,23 @@ export default {
   setup() {
     const countStore = useCounterStore();
 
+    // to share a data in all the app
+    // if more complex = use pinia
+    const stateData = useState("stateData", () =>
+      Math.round(Math.random() * 1000)
+    );
+
     definePageMeta({
       title: "Home Page",
     });
+
+    // Use reactive to build object being reactive instead of array
+    let reactiveObject = reactive({ name: "toto", id: 0 });
+
     return {
+      reactiveObject,
       countStore,
+      stateData,
     };
   },
   mounted() {
@@ -86,4 +108,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  border: 2px solid rgb(7, 191, 212);
+  margin-block: 20px;
+  padding: 10px;
+}
+</style>
