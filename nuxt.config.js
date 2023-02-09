@@ -6,19 +6,8 @@ export default defineNuxtConfig({
       charset: "utf-16",
       viewport: "width=500, initial-scale=1",
       title: "My App",
-      meta: [
-        // <meta name="description" content="My amazing site">
-        { name: "description", content: "My amazing site." },
-      ],
-      script: [
-        /* {
-          src: "https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js",
-          integrity:
-            "sha512-avLcnGxl5mqAX/wIKERdb1gFNkOLHh2W5JNCfJm5OugpEPBz7LNXJJ3BDjjwO00AxEY1MqdNjtEmiYhKC0ld7g==",
-          crossorigin: "anonymous",
-          referrerpolicy: "no-referrer",
-        }, */
-      ],
+      meta: [{ name: "description", content: "My amazing site." }],
+      script: [],
     },
   },
   css: [
@@ -37,6 +26,14 @@ export default defineNuxtConfig({
     define: {
       "process.env.DEBUG": false,
     },
+    css: {
+      // CONFIG GLOBAL VARIABLES FOR SASS
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/assets/_colors.scss" as *;',
+        },
+      },
+    },
   },
   imports: {
     dirs: ["stores"],
@@ -54,4 +51,7 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  privateRuntimeConfig: {
+    DATABASE: process.env.DATABASE, // can be overridden by NUXT_API_SECRET environment variable
+  },
 });

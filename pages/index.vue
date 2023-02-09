@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Home page</h1>
+    <h1 class="title-color">Home page</h1>
 
     <Icon name="mdi:account-circle" size="34px" color="red" /><Icon name="🚀" />
     <Icon name="mdi:account-box" size="34px" color="blue" />
@@ -39,6 +39,10 @@ export default {
   setup() {
     const countStore = useCounterStore();
 
+    // ACCESS TO THE ENV DATA
+    const config = useRuntimeConfig();
+    console.log(config.DATABASE);
+
     // to share a data in all the app
     // if more complex = use pinia
     const stateData = useState("stateData", () =>
@@ -58,48 +62,7 @@ export default {
       stateData,
     };
   },
-  mounted() {
-    const objTest = {
-      name: "gg",
-      date: "now",
-    };
-    class User {
-      constructor(name, date) {
-        (this._name = name), (this._date = date);
-        this.add = (a, b) => {
-          return a + b;
-        };
-      }
-
-      full() {
-        return this._name + this._date;
-      }
-    }
-
-    const checkAge = (user, age) => {
-      user.age = age;
-      if (age < 18) {
-        console.log(`This user is not allowed below ${age}`);
-      } else {
-        return user;
-      }
-    };
-
-    const user1 = new User("toto", "tomorow");
-    const user2 = new User("alex", "yesterday");
-    const user3 = checkAge(new User("pierre", "before"), 16);
-    const user4 = checkAge(new User("mathieu", "before"), 24);
-
-    user2._name = "alexia";
-
-    console.log(objTest);
-    console.log(user1);
-    console.log(user2);
-    console.log(user2.full());
-    console.log(user1.add(5, 10));
-    console.log(user3);
-    console.log(user4);
-  },
+  mounted() {},
   methods: {
     name() {
       this.countStore.updateName("ghsilain");
@@ -113,5 +76,8 @@ export default {
   border: 2px solid rgb(7, 191, 212);
   margin-block: 20px;
   padding: 10px;
+}
+.title-color {
+  color: $primary;
 }
 </style>

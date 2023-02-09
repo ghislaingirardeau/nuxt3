@@ -29,7 +29,12 @@
           <div class="field">
             <div class="ui left icon input big">
               <i class="mail icon"></i>
-              <input type="email" placeholder="Email" v-model="user.email" />
+              <input
+                ref="inputRef"
+                type="email"
+                placeholder="Email"
+                v-model="user.email"
+              />
             </div>
           </div>
           <div class="field">
@@ -69,10 +74,12 @@ export default {
     });
     // ANIMATE THE PAGE TRANSITION = ANIATION CSS IN INDEX
     definePageMeta({
-      pageTransition: {
+      /* pageTransition: {
         name: "rotate",
-      },
+      }, */
+      middleware: "authentification",
     });
+
     const titleRaw = ref("title computed");
     const countStore = useCounterStore();
 
@@ -103,8 +110,13 @@ export default {
       user.id = 5;
     };
 
+    const inputRef = ref(null);
+
     onBeforeMount(() => {
       loadProducts();
+    });
+    onMounted(() => {
+      document.querySelector("input")?.focus();
     });
 
     // DIFFERENCE BETWEEN REACTIVE AND NOT
@@ -112,6 +124,7 @@ export default {
     const variableReactive = ref(0);
 
     return {
+      inputRef,
       notReactive,
       variableReactive,
       user,

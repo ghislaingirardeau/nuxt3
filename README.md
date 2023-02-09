@@ -1,3 +1,18 @@
+# Composables
+
+Similar to mixins
+to reuse logic for common tasks. For example, we may need to format dates in many places,
+so we extract a reusable function for that.
+
+# Env
+
+create env file to the root to automaticly set dotenv
+Since the URL is not secret and sensitive data, we can use the publicRuntimeConfig: key.
+If it was private, like an API token, you’d want to do this using the privateRuntimeConfig:
+
+const config = useRuntimeConfig();
+console.log(config.DATABASE);
+
 # Nuxt 3 Minimal Starter
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.

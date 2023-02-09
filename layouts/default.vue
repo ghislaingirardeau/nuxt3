@@ -66,6 +66,10 @@ export default {
         title: "ThreeJS",
         to: "ThreeJs",
       },
+      {
+        title: "Composable",
+        to: "composable",
+      },
     ],
   }),
 
