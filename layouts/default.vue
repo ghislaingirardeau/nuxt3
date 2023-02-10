@@ -7,24 +7,20 @@
       </el-header>
       <el-container>
         <ClientOnly>
-          <el-aside :width="asideWidth">
-            <el-menu default-active="2" :collapse="drawer">
+          <el-aside :width="asideWidth" class="aside-container">
+            <el-menu default-active="0" :collapse="drawer" class="aside-menu">
               <el-menu-item
                 v-for="(item, i) in items"
                 :key="i"
                 :index="i.toString()"
+                @click="$router.push(item.to)"
               >
-                <NuxtLink :to="item.to">
-                  <Icon
-                    :name="item.icon"
-                    size="24px"
-                    color="black"
-                    class="mr-3"
-                  />
-                  <template #title>
+                <Icon :name="item.icon" size="24px" color="black" />
+                <template #title
+                  ><NuxtLink :to="item.to" class="ml-3">
                     {{ item.title }}
-                  </template>
-                </NuxtLink>
+                  </NuxtLink></template
+                >
               </el-menu-item>
             </el-menu>
           </el-aside>
@@ -119,5 +115,14 @@ a {
 .header-container {
   background-color: $btnColor;
   padding-top: 10px;
+}
+.aside-container {
+  background-color: $asidebg;
+  border-right: 2px solid rgb(156, 153, 153);
+  border-top: 2px solid rgb(156, 153, 153);
+}
+.aside-menu {
+  background-color: $asidebg;
+  width: 100%;
 }
 </style>
