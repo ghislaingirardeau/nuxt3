@@ -9,8 +9,18 @@
 
     <div class="container">
       <h2>Pass v-model parent / children</h2>
-      <p>name: {{ pageTitle.name }} / value: {{ pageTitle.value }}</p>
+      <h3>With Options API</h3>
+      <p>
+        name from parent: {{ pageTitle.name }} / value from parent:
+        {{ pageTitle.value }}
+      </p>
       <ChildComponent v-model="pageTitle" />
+      <h3>With Compostion API</h3>
+      <p>
+        name from parent: {{ modelpageTitle.name }} / value from parent:
+        {{ modelpageTitle.value }}
+      </p>
+      <ChildComponent v-model="modelpageTitle" />
       <button @click="send">send new data</button>
     </div>
     <button @click="$router.back()">Go back</button>
@@ -124,6 +134,11 @@ export default {
     let notReactive = 0;
     const variableReactive = ref(0);
 
+    const modelpageTitle = reactive({
+      name: "ghislain",
+      value: "girardeau",
+    });
+
     return {
       inputRef,
       notReactive,
@@ -135,6 +150,7 @@ export default {
       titleRaw,
       countStore,
       myComputedTtile,
+      modelpageTitle,
     };
   },
   data() {

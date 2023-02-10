@@ -7,21 +7,27 @@
       </el-header>
       <el-container>
         <ClientOnly>
-          <el-aside :width="asideWidth" class="aside-container">
-            <el-menu default-active="0" :collapse="drawer" class="aside-menu">
-              <el-menu-item
+          <el-aside
+            :width="asideWidth"
+            class="aside-container"
+            :style="{ opacity: drawer ? 0 : 1 }"
+          >
+            <el-menu class="aside-menu">
+              <NuxtLink
                 v-for="(item, i) in items"
                 :key="i"
-                :index="i.toString()"
-                @click="$router.push(item.to)"
+                :to="item.to"
+                @click="isActive = i"
               >
-                <Icon :name="item.icon" size="24px" color="black" />
-                <template #title
-                  ><NuxtLink :to="item.to" class="ml-3">
-                    {{ item.title }}
-                  </NuxtLink></template
-                >
-              </el-menu-item>
+                <el-menu-item>
+                  <Icon :name="item.icon" size="24px" color="black" />
+                  <span
+                    class="nav-link-text"
+                    :style="{ color: isActive === i ? 'red' : 'black' }"
+                    >{{ item.title }}</span
+                  >
+                </el-menu-item>
+              </NuxtLink>
             </el-menu>
           </el-aside>
         </ClientOnly>
@@ -66,6 +72,7 @@ export default {
   data: () => ({
     drawer: false,
     asideWidth: "170px",
+    isActive: 0,
     items: [
       {
         title: "home",
@@ -97,12 +104,17 @@ export default {
   methods: {
     showMenu() {
       this.drawer = !this.drawer;
+      if (!this.drawer) {
+        this.asideWidth = "170px";
+      } else {
+        this.asideWidth = "0px";
+      }
     },
   },
   beforeMount() {
     if (window.innerWidth < 700) {
       this.drawer = true;
-      this.asideWidth = "70px";
+      this.asideWidth = "0px";
     }
   },
 };
@@ -120,9 +132,18 @@ a {
   background-color: $asidebg;
   border-right: 2px solid rgb(156, 153, 153);
   border-top: 2px solid rgb(156, 153, 153);
+  -webkit-transition: width 1s ease-in-out;
+  -moz-transition: width 1s ease-in-out;
+  -o-transition: width 1s ease-in-out;
+  opacity: 0;
+  transition: all 1s ease-in-out;
 }
 .aside-menu {
   background-color: $asidebg;
   width: 100%;
+}
+.nav-link-text {
+  margin-left: 15px;
+  font-weight: bold;
 }
 </style>

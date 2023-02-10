@@ -4,9 +4,8 @@ export function useDate(params) {
   const today = ref();
 
   if ($moment) {
-    $moment().locale("fr");
-    console.log($moment().locale("fr").format(params));
-    today.value = $moment().locale("fr").format(params);
+    console.log("from plugins", $moment().locale("es").format(params));
+    today.value = $moment().locale("es").format(params);
   }
 
   return { today };

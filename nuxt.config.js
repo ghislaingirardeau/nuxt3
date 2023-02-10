@@ -45,7 +45,7 @@ export default defineNuxtConfig({
   modules: [
     "@vueuse/nuxt",
     "nuxt-icon",
-    "@nuxtjs/tailwindcss",
+    /* "@nuxtjs/tailwindcss", */
     "@element-plus/nuxt",
     [
       "@pinia/nuxt",
