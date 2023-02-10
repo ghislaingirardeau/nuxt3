@@ -11,9 +11,9 @@
       <h2>Pass v-model parent / children</h2>
       <p>name: {{ pageTitle.name }} / value: {{ pageTitle.value }}</p>
       <ChildComponent v-model="pageTitle" />
-      <v-btn @click="send">send new data</v-btn>
+      <button @click="send">send new data</button>
     </div>
-    <v-btn @click="$router.back()">Go back</v-btn>
+    <button @click="$router.back()">Go back</button>
 
     <div class="container">
       <p>
@@ -47,17 +47,18 @@
               />
             </div>
           </div>
-          <v-btn
+          <button
             :disabled="isSignupButtonDisabled"
             class="ui button big pink fluid"
             @click="addUser"
-            >LOG IN</v-btn
           >
+            LOG IN
+          </button>
           <p>{{ user }}</p>
           <p v-if="user.id">{{ Object.keys(user).length }}</p>
-          <v-btn @click="notReactive++">Not reactive</v-btn>
+          <button @click="notReactive++">Not reactive</button>
           <p>{{ notReactive }}</p>
-          <v-btn @click="variableReactive++">reactive</v-btn>
+          <button @click="variableReactive++">reactive</button>
           <p>{{ variableReactive }}</p>
         </div>
       </form>

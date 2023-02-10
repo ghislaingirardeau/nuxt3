@@ -5,7 +5,7 @@
     <p>{{ test }}</p>
     <p>{{ route.path }}</p>
     <input type="text" v-model="movie" />
-    <v-btn @click="increase">increase</v-btn>
+    <button @click="increase">increase</button>
   </div>
 </template>
 

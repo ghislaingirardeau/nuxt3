@@ -1,18 +1,39 @@
 <template>
-  <div>
-    <v-layout>
+  <div class="common-layout">
+    <el-container>
+      <el-header class="header-container">
+        <Icon name="mdi:menu" size="34px" color="white" @click="showMenu" />
+        <span class="text-large font-800 ml-5"> Nuxt 3 tutorial </span>
+      </el-header>
+      <el-container>
+        <ClientOnly>
+          <el-aside :width="asideWidth">
+            <el-menu default-active="2" :collapse="drawer">
+              <el-menu-item
+                v-for="(item, i) in items"
+                :key="i"
+                :index="i.toString()"
+              >
+                <NuxtLink :to="item.to">
+                  <Icon
+                    :name="item.icon"
+                    size="24px"
+                    color="black"
+                    class="mr-3"
+                  />
+                  <template #title>
+                    {{ item.title }}
+                  </template>
+                </NuxtLink>
+              </el-menu-item>
+            </el-menu>
+          </el-aside>
+        </ClientOnly>
+        <el-main><slot /></el-main>
+      </el-container>
+    </el-container>
+    <!-- <v-layout>
       <v-app-bar color="primary">
-        <!-- <v-app-bar-nav-icon
-          variant="text"
-          @click.stop="drawer = !drawer"
-        ></v-app-bar-nav-icon>
-        <Icon
-          name="mdi:menu"
-          size="34px"
-          color="white"
-          class="ml-4"
-          @click.stop="drawer = !drawer"
-        /> -->
         <Icon
           name="mdi:menu"
           size="34px"
@@ -40,7 +61,7 @@
           <slot />
         </v-container>
       </v-main>
-    </v-layout>
+    </v-layout> -->
   </div>
 </template>
 
@@ -48,35 +69,45 @@
 export default {
   data: () => ({
     drawer: false,
-    group: null,
+    asideWidth: "170px",
     items: [
       {
         title: "home",
         to: "/",
+        icon: "mdi:house",
       },
       {
         title: "about",
         to: "about",
+        icon: "mdi:plus",
       },
       {
         title: "vue Use",
         to: "vueUse",
+        icon: "mdi:circle",
       },
       {
         title: "ThreeJS",
         to: "ThreeJs",
+        icon: "mdi:house",
       },
       {
         title: "Composable",
         to: "composable",
+        icon: "mdi:house",
       },
     ],
   }),
-
-  watch: {
-    group() {
-      this.drawer = false;
+  methods: {
+    showMenu() {
+      this.drawer = !this.drawer;
     },
+  },
+  beforeMount() {
+    if (window.innerWidth < 700) {
+      this.drawer = true;
+      this.asideWidth = "70px";
+    }
   },
 };
 </script>
@@ -84,5 +115,9 @@ export default {
 <style lang="scss" scoped>
 a {
   text-decoration: none;
+}
+.header-container {
+  background-color: $btnColor;
+  padding-top: 10px;
 }
 </style>

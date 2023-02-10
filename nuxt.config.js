@@ -7,20 +7,24 @@ export default defineNuxtConfig({
       viewport: "width=500, initial-scale=1",
       title: "My App",
       meta: [{ name: "description", content: "My amazing site." }],
-      script: [],
+      script: [
+        {
+          src: "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js",
+          type: "text/javascript",
+        },
+        {
+          src: "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/fr.min.js",
+          type: "text/javascript",
+        },
+      ],
     },
   },
-  css: [
-    "vuetify/lib/styles/main.sass",
-    /* "@mdi/font/css/materialdesignicons.min.css", */
-  ],
-  build: {
-    transpile: ["vuetify"],
-  },
+
   plugins: [
     { src: "~/plugins/datThree.js", mode: "client" },
     { src: "~/plugins/threeInteraction.js", mode: "client" },
     { src: "~/plugins/gsap.js", mode: "client" },
+    { src: "~/plugins/moment.js" },
   ],
   vite: {
     define: {
@@ -41,6 +45,8 @@ export default defineNuxtConfig({
   modules: [
     "@vueuse/nuxt",
     "nuxt-icon",
+    "@nuxtjs/tailwindcss",
+    "@element-plus/nuxt",
     [
       "@pinia/nuxt",
       {

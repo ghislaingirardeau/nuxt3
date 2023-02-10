@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 class="title-color">Home page</h1>
+    {{ date ? date : "" }}
 
     <Icon name="mdi:account-circle" size="34px" color="red" /><Icon name="🚀" />
     <Icon name="mdi:account-box" size="34px" color="blue" />
@@ -21,14 +22,14 @@
         {{ countStore.count }} and my name {{ countStore.name }} <br />
         getter: {{ countStore.doubleCount }}
       </p>
-      <v-btn @click="countStore.$patch({ count: 24 })">change state</v-btn>
-      <v-btn @click="countStore.$reset()">reset store</v-btn>
-      <v-btn @click="countStore.increment">use action</v-btn>
-      <v-btn @click="name">update name</v-btn>
+      <button @click="countStore.$patch({ count: 24 })">change state</button>
+      <button @click="countStore.$reset()">reset store</button>
+      <button @click="countStore.increment">use action</button>
+      <button @click="name">update name</button>
     </div>
     <div class="container">
       <h2>Use reactive instead of ref for array or object</h2>
-      <v-btn @click="reactiveObject.id++">Change ID</v-btn>
+      <button @click="reactiveObject.id++">Change ID</button>
       {{ reactiveObject }}
     </div>
   </div>
@@ -56,13 +57,18 @@ export default {
     // Use reactive to build object being reactive instead of array
     let reactiveObject = reactive({ name: "toto", id: 0 });
 
+    const date = ref();
+    onMounted(() => {
+      date.value = moment().format("dddd"); // work with cdn
+    });
+
     return {
       reactiveObject,
       countStore,
       stateData,
+      date,
     };
   },
-  mounted() {},
   methods: {
     name() {
       this.countStore.updateName("ghsilain");

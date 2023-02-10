@@ -4,8 +4,7 @@
     <p>my mouse : {{ x }} and {{ y }}</p>
     <p>my batterie: {{ battery }}</p>
     <div>
-      <v-text-field label="write the text to copy" v-model="source">
-      </v-text-field>
+      <input type="text" v-model="source" />
       <button @click="copy()">
         <span v-if="!copied">Copy</span>
         <span v-else>Copied!</span>
@@ -13,9 +12,9 @@
     </div>
     <div>
       <p>{{ count }}</p>
-      <v-btn color="secondary" @click="count++">increment</v-btn>
-      <v-btn color="secondary" @click="undo">undo</v-btn>
-      <v-btn color="secondary" @click="redo">redo</v-btn>
+      <button color="secondary" @click="count++">increment</button>
+      <button color="secondary" @click="undo">undo</button>
+      <button color="secondary" @click="redo">redo</button>
     </div>
   </div>
 </template>

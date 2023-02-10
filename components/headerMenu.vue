@@ -11,7 +11,7 @@
         </NuxtLink>
       </div>
     </div>
-    <v-btn color="secondary" @click="search">load movies</v-btn>
+    <button color="secondary" @click="search">load movies</button>
   </div>
 </template>
 

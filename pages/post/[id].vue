@@ -1,9 +1,9 @@
 <template>
-  <v-row>
+  <div>
     {{ route.params.id }}
     {{ data }}
-    <v-btn color="info" @click="$router.back()">Go back</v-btn>
-  </v-row>
+    <button color="info" @click="$router.back()">Go back</button>
+  </div>
 </template>
 
 <script setup>
