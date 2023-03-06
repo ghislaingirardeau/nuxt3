@@ -2,10 +2,10 @@
   <div>
     <div class="container">
       <h1>{{ title }}</h1>
-      <ClientOnly>
+      <!-- <ClientOnly>
         <h2>{{ today }}</h2>
-      </ClientOnly>
-      <!-- <h2>{{ today }}</h2> -->
+      </ClientOnly> -->
+      <h2>{{ today }}</h2>
 
       <button @click="load = !load">Track</button> {{ load }}
       <p>Mouse position is at: {{ x }}, {{ y }}</p>
@@ -35,7 +35,6 @@ import { useMouse } from "../composables/mouse";
 const { width } = useDisplay(); */
 import { useDate } from "../composables/date";
 const { today } = useDate("dddd"); // send the format of date we want as params
-console.log("from page", today);
 
 const load = ref(true);
 const { x, y } = useMouse(); // you can also pass parameters
