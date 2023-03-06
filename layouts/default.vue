@@ -99,6 +99,11 @@ export default {
         to: "composable",
         icon: "mdi:house",
       },
+      {
+        title: "language",
+        to: "language",
+        icon: "mdi:house",
+      },
     ],
   }),
   methods: {
@@ -145,5 +150,8 @@ a {
 .nav-link-text {
   margin-left: 15px;
   font-weight: bold;
+}
+.common-layout {
+  width: 375px;
 }
 </style>
