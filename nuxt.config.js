@@ -1,4 +1,5 @@
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
+require("dotenv").config();
+
 export default defineNuxtConfig({
   ssr: true,
   app: {
@@ -57,7 +58,9 @@ export default defineNuxtConfig({
       },
     ],
   ],
-  privateRuntimeConfig: {
+  publicRuntimeConfig: {
     DATABASE: process.env.DATABASE, // can be overridden by NUXT_API_SECRET environment variable
+    XRAPIDAPIKEY: process.env.XRAPIDAPIKEY,
+    XRAPIDAPIHOST: process.env.XRAPIDAPIHOST,
   },
 });

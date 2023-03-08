@@ -3,7 +3,15 @@
     <el-container>
       <el-header class="header-container">
         <Icon name="mdi:menu" size="34px" color="white" @click="showMenu" />
-        <span class="text-large font-800 ml-5"> Nuxt 3 tutorial </span>
+        <span class="text-large font-800 ml-5"> Nuxt 3 </span>
+        <Icon
+          v-if="showGoBack === 'card-id'"
+          name="mdi:arrow-left-drop-circle-outline"
+          size="34px"
+          color="white"
+          @click="$router.back()"
+          class="goBack"
+        />
       </el-header>
       <el-container>
         <ClientOnly>
@@ -106,6 +114,11 @@ export default {
       },
     ],
   }),
+  computed: {
+    showGoBack() {
+      return this.$route.name;
+    },
+  },
   methods: {
     showMenu() {
       this.drawer = !this.drawer;
@@ -132,6 +145,7 @@ a {
 .header-container {
   background-color: $btnColor;
   padding-top: 10px;
+  position: relative;
 }
 .aside-container {
   background-color: $asidebg;
@@ -153,5 +167,10 @@ a {
 }
 .common-layout {
   width: 375px;
+}
+.goBack {
+  position: absolute;
+  right: 20px;
+  z-index: 9999;
 }
 </style>
