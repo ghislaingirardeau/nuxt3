@@ -165,9 +165,6 @@ a {
   margin-left: 15px;
   font-weight: bold;
 }
-.common-layout {
-  width: 375px;
-}
 .goBack {
   position: absolute;
   right: 20px;

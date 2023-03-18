@@ -88,7 +88,7 @@ export default {
       /* pageTransition: {
         name: "rotate",
       }, */
-      middleware: "authentification",
+      middleware: "authentification", // add middleware to this specific page
     });
 
     const titleRaw = ref("title computed");

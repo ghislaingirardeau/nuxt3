@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1 class="title-color">Home page</h1>
-    {{ date ? date : "" }}
 
     <Icon name="mdi:account-circle" size="34px" color="red" /><Icon name="🚀" />
     <Icon name="mdi:account-box" size="34px" color="blue" />
@@ -40,10 +39,6 @@ export default {
   setup() {
     const countStore = useCounterStore();
 
-    // ACCESS TO THE ENV DATA
-    const config = useRuntimeConfig();
-    console.log(config.DATABASE);
-
     // to share a data in all the app
     // if more complex = use pinia
     const stateData = useState("stateData", () =>
@@ -57,16 +52,15 @@ export default {
     // Use reactive to build object being reactive instead of array
     let reactiveObject = reactive({ name: "toto", id: 0 });
 
-    const date = ref();
+    /* const date = ref();
     onMounted(() => {
       date.value = moment().format("dddd"); // work with cdn
-    });
+    }); */
 
     return {
       reactiveObject,
       countStore,
       stateData,
-      date,
     };
   },
   methods: {

@@ -1,11 +1,11 @@
 require("dotenv").config();
 
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: true, // DEFAULT
   app: {
     head: {
       charset: "utf-16",
-      viewport: "width=500, initial-scale=1",
+      viewport: "width=device-width, initial-scale=1",
       title: "My App",
       meta: [{ name: "description", content: "My amazing site." }],
       script: [
@@ -20,6 +20,16 @@ export default defineNuxtConfig({
       ],
     },
   },
+  routeRules: {
+    // ssr est true par defaut
+    // tuto : C:\Users\ghisl\OneDrive\Documents\Formation\Memo global\vuejs
+    "/swr": { swr: true },
+    "/static": { static: true },
+    "/spa": { ssr: false },
+    // Add redirect headers
+    /* '/old-page': { redirect: '/new-page' },
+    '/old-page2': { redirect: { to: '/new-page', statusCode: 302 } } */
+  },
 
   plugins: [
     { src: "~/plugins/datThree.js", mode: "client" },
@@ -32,7 +42,6 @@ export default defineNuxtConfig({
       "process.env.DEBUG": false,
     },
     css: {
-      // CONFIG GLOBAL VARIABLES FOR SASS
       preprocessorOptions: {
         scss: {
           additionalData: '@use "@/assets/_colors.scss" as *;',
@@ -62,5 +71,6 @@ export default defineNuxtConfig({
     DATABASE: process.env.DATABASE, // can be overridden by NUXT_API_SECRET environment variable
     XRAPIDAPIKEY: process.env.XRAPIDAPIKEY,
     XRAPIDAPIHOST: process.env.XRAPIDAPIHOST,
+    XRAPIDAPIHOSTTTS: process.env.XRAPIDAPIHOSTTTS,
   },
 });
