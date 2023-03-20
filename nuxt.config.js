@@ -23,8 +23,8 @@ export default defineNuxtConfig({
   routeRules: {
     // ssr est true par defaut
     // tuto : C:\Users\ghisl\OneDrive\Documents\Formation\Memo global\vuejs
-    "/swr": { swr: true },
-    "/static": { static: true },
+    "/swr": { swr: true }, // WORK ON DEPLOY NETLIFY
+    "/static": { static: true }, // WORK ON DEPLOY NETLIFY
     "/spa": { ssr: false },
     // Add redirect headers
     /* '/old-page': { redirect: '/new-page' },
@@ -36,6 +36,7 @@ export default defineNuxtConfig({
     { src: "~/plugins/threeInteraction.js", mode: "client" },
     { src: "~/plugins/gsap.js", mode: "client" },
     { src: "~/plugins/moment.js" },
+    { src: "~/plugins/myPluginCompo.js" },
   ],
   vite: {
     define: {
