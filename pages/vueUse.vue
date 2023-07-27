@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Vue use page</h1>
+    <h1>Vue use playground</h1>
     <p>my mouse : {{ x }} and {{ y }}</p>
     <p>my batterie: {{ battery }}</p>
     <div>
