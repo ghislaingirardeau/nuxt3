@@ -78,6 +78,8 @@
 
 <script>
 import useModulesTest from "@/modules/modulesTest"; // LIKE MIXING
+import { hydrate } from "nuxt/dist/app/compat/capi";
+import { useHydration } from "nuxt/dist/app/composables";
 export default {
   setup() {
     useHead({
@@ -86,23 +88,19 @@ export default {
     // ANIMATE THE PAGE TRANSITION = ANIATION CSS IN INDEX
     definePageMeta({
       /* pageTransition: {
-        name: "rotate",
-      }, */
+              name: "rotate",
+            }, */
       middleware: "authentification", // add middleware to this specific page
     });
-
     const titleRaw = ref("title computed");
     const countStore = useCounterStore();
-
     // USE COMPUTED
     const myComputedTtile = computed(() => {
       console.log("computed", titleRaw);
       return titleRaw.value.charAt(0).toUpperCase() + titleRaw.value.slice(1);
     });
-
     // USE EXTERNAL JS MODULES SCRIPT
     const { products, loadProducts } = useModulesTest();
-
     // FORM EXAMPLE OF VALIDATION
     const user = reactive({ email: "", password: "" });
     const isSignupButtonDisabled = computed(() => {
@@ -116,29 +114,24 @@ export default {
       }
       return disabled;
     });
-
     const addUser = () => {
       user.id = 5;
     };
-
     const inputRef = ref(null);
-
     onBeforeMount(() => {
       loadProducts();
     });
+
     onMounted(() => {
       document.querySelector("input")?.focus();
     });
-
     // DIFFERENCE BETWEEN REACTIVE AND NOT
     let notReactive = 0;
     const variableReactive = ref(0);
-
     const modelpageTitle = reactive({
       name: "ghislain",
       value: "girardeau",
     });
-
     return {
       inputRef,
       notReactive,
@@ -169,6 +162,7 @@ export default {
       console.log(this.pageTitle);
     },
   },
+  components: { hydrate },
 };
 </script>
 

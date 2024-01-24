@@ -88,8 +88,8 @@ export default {
         icon: "mdi:house",
       },
       {
-        title: "machine",
-        to: "machine",
+        title: "watch Tuto",
+        to: "watchTuto",
         icon: "mdi:plus",
       },
       {

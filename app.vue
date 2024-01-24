@@ -1,6 +1,8 @@
 <template>
   <div>
     <NuxtLayout name="default">
+      <NuxtLoadingIndicator />
+      <!-- add a loader -->
       <NuxtPage />
       <!-- <p v-if="fetchMovies.loading">loading...</p>
       <p v-else>movies from pinia: {{ fetchMovies.movies }}</p> -->
