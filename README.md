@@ -4,7 +4,7 @@ Similar to mixins
 to reuse logic for common tasks. For example, we may need to format dates in many places,
 so we extract a reusable function for that.
 
-DEBUG DU PROJET
+debug du projet
 
 # Env
 
